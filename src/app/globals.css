@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --color-navy: #0b1220;
+  --color-bronze: #b88a5a;
+  --color-sand: #f2efe9;
+  --color-ivory: #faf8f4;
+  --color-graphite: #2b2f36;
+}
+
+:root {
+  color-scheme: light;
+  background: #f2efe9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+}
+
+body {
+  margin: 0;
+  background: #f2efe9;
+  color: #2b2f36;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+/* Must live in the base layer: unlayered rules outrank every Tailwind utility,
+   which would make `font: inherit` silently override text-* on form controls. */
+@layer base {
+  button,
+  textarea,
+  input {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+::selection {
+  background: rgba(184, 138, 90, 0.28);
+  color: #0b1220;
+}
+
+:focus-visible {
+  outline: 2px solid #b88a5a;
+  outline-offset: 3px;
+}
+
+.care-scroll {
+  scrollbar-color: rgba(43, 47, 54, 0.2) transparent;
+  scrollbar-width: thin;
+}
+
+.care-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.care-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.care-scroll::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-clip: padding-box;
+  background-color: rgba(43, 47, 54, 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
